@@ -1,6 +1,10 @@
 # update NestWatch
-echo "Upgrading to the Latest Version of NestWatch..."
+echo "Upgrading to the Latest Version of NestWatch...\n\n"
 
-git clone https://github.com/BFSpecialProjects/TwilioBackend.git
+# remove old version
+rm ~/NestWatchServer/PythonBackend/TwilioBackend/NestWatch.py
 
-echo "NestWatch has been updated."
+# install latest version
+wget https://raw.githubusercontent.com/BFSpecialProjects/TwilioBackend/master/NestWatch.py
+
+echo "\n\nNestWatch has been updated."
