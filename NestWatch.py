@@ -13,7 +13,9 @@ def welcomeMessage():
 	account_sid = "ACb5ea38bc4c703627eef8b374dd1d204e"
 
 	# account auth token
+	### DELETE TOKEN BEFORE POSTING TO GITHUB ###
 	auth_token = "AUTHTOKENHERE"
+	### DELETE TOKEN BEFORE POSTING TO GITHUB ###
 
 	# client object
 	client = Client(account_sid, auth_token)
