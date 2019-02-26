@@ -10,12 +10,11 @@ from twilio.twiml.messaging_response import MessagingResponse
 # welcome users to service
 def welcomeMessage():
 	# account SID
-	account_sid = "ACb5ea38bc4c703627eef8b374dd1d204e"
+	account_sid = "SIDHERE"
 
 	# account auth token
-	### DELETE TOKEN BEFORE POSTING TO GITHUB ###
+	### when posting to GitHub, remove auth token from code ###
 	auth_token = "AUTHTOKENHERE"
-	### DELETE TOKEN BEFORE POSTING TO GITHUB ###
 
 	# client object
 	client = Client(account_sid, auth_token)
@@ -24,7 +23,7 @@ def welcomeMessage():
 	# upon implementation, change to "Welcome to NestWatch"
 	message = client.messages.create(
 		to = "+19192748780",
-		from_ = "+19199483074",
+		from_ = "+19193354640",
 		body = "Welcome to NestWatch.")
 
 	print(message.sid)
