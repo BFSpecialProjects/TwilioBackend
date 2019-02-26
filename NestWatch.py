@@ -13,7 +13,7 @@ def welcomeMessage():
 	account_sid = "ACb5ea38bc4c703627eef8b374dd1d204e"
 
 	# account auth token
-	auth_token = "9e29b19d23fe9777aa4d23d75966cec3"
+	auth_token = "AUTHTOKENHERE"
 
 	# client object
 	client = Client(account_sid, auth_token)
@@ -23,7 +23,7 @@ def welcomeMessage():
 	message = client.messages.create(
 		to = "+19192748780",
 		from_ = "+19199483074",
-		body = "w")
+		body = "Welcome to NestWatch.")
 
 	print(message.sid)
 
