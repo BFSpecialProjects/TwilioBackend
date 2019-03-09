@@ -1,4 +1,7 @@
-# File to combine sending and replying funcitonalities
+# Each character costs $.0075
+
+# import NestWatch-specific modules
+import nw_parser
 
 # client import for simply sending messages
 from twilio.rest import Client
@@ -7,54 +10,37 @@ from twilio.rest import Client
 from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
 
-# welcome users to service
-def welcomeMessage():
-	# account SID
-	account_sid = "SIDHERE"
-
-	# account auth token
-	### when posting to GitHub, remove auth token from code ###
-	auth_token = "AUTHTOKENHERE"
-
-	# client object
-	client = Client(account_sid, auth_token)
-
-	# create and send message
-	# upon implementation, change to "Welcome to NestWatch"
-	message = client.messages.create(
-		to = "+19192748780",
-		from_ = "+19193354640",
-		body = "Welcome to NestWatch.")
-
-	print(message.sid)
-
 # reply to messages
 app = Flask(__name__)
-
 @app.route("/sms", methods = ['GET', 'POST'])
 
-# reply to messages sent from user
-def sms_reply():
-	try:
-		# get message sent by user
-		body = request.values.get('Body', None)
+# method called if teacher sends report
+def handleReport():
+	# temp list of "teacher" numbers, replace w/ database
+	teachers = ['+19192748780']
+	sender = request.values.get('From')
 
-		# start TwiML response
-		resp = MessagingResponse()
+	# if sender is a verified teacher, give them a response
+	for number in teachers:
+		if sender in teachers:
+			try:
+				# store message sent by teacher and pass it to parser
+				report = request.values.get('Body', None)
 
-		# determine reply
-		# 1 and 2 just to demonstrate multiple responses
-		# if "n" (for new user), send welcome message
-		if body == 'a':
-			resp.message('1')
-		elif body == 'b':
-			resp.message('2')
-		elif body=="n":
-			welcomeMessage();
+				# parse message and store as reply
+				alert = nw_parser.ParseReport(report)
 
-		return str(resp)
-	except TwilioRestException as e:
-		print(e)
+				# respond to teacher that reported threat
+				# init TwiML response
+				resp = MessagingResponse()
+
+				# ask Carrington what to say to teachers who are reporting incidents
+				resp.message('Your report will look like this once sent: ' + alert)
+
+				return str(resp)
+			except TwilioRestException as e:
+				print(e)
+
 
 if __name__ == "__main__":
 	app.run(debug=True)
