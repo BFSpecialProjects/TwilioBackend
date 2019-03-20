@@ -1,5 +1,11 @@
 # Each character costs $.0075
 
+# TODO: implement report verification and student notification functions
+# probably can't write a separate module, so do it in this file 
+
+# pandas for "database"
+import pandas as pd
+
 # import NestWatch-specific modules
 import nw_parser
 
@@ -16,11 +22,16 @@ app = Flask(__name__)
 
 # method called if teacher sends report
 def handleReport():
-	# temp list of "teacher" numbers, replace w/ database
-	teachers = ['+19192748780']
-	sender = request.values.get('From')
-
+	# temp spreadsheet of "teacher" numbers, replace w/ database
+	
+	# import db and assign numbers to column
+	# TODO: differentiate between 'student' and 'teacher' numbers in xls file
+	df = pd.read_excel('db.xls')
+	teachers = df['TeacherNumbers']
+	students = df['StudentNumbers']
+	
 	# if sender is a verified teacher, give them a response
+	sender = request.values.get('From')
 	for number in teachers:
 		if sender in teachers:
 			try:
@@ -40,6 +51,9 @@ def handleReport():
 				return str(resp)
 			except TwilioRestException as e:
 				print(e)
+				
+				# TODO: write separate methods for verification and notifying
+				# students 
 
 
 if __name__ == "__main__":
