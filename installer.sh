@@ -13,6 +13,9 @@ pip install flask
 # twilio api
 pip install twilio
 
+# pandas for temp database workaround
+pip install pandas
+
 # install latest version of launcher
 echo "\n\n\nGetting the latest version of the Launcher...\n\n\n"
 wget https://github.com/BFSpecialProjects/TwilioBackend/blob/master/launch.sh
