@@ -38,7 +38,7 @@ def verifyThreat(alert, sender):
 	# iterate through teachers list and send verification message to all but sender
 	for row in teachers:
 		if not sender:
-			message = client.message.create(
+			message = Client.message.create(
 				to = teachers[row],
 				from_ = "+19193354640",
 				body = alert)
@@ -49,7 +49,6 @@ def verifyThreat(alert, sender):
 def handleReport():
 	# connect to database and instantiate cursor
 	connection = psycopg2.connect(host="localhost",
-                                  database="nestwatch",
                                   port="5432",
                                   user="postgres",
                                   password="Rn83:xD4")
