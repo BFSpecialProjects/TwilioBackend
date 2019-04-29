@@ -62,8 +62,8 @@ def handleReport():
 def verifyThreat(alert, sender):
 	# remember to reomve these when pushing to GitHub
 	# using bfspecialprojects account
-	account_sid = 'ACb5ea38bc4c703627eef8b374dd1d204e'
-	auth_token = '5bb23b76885428b081e4cda20210cb3c'
+	account_sid = ''
+	auth_token = ''
 	client = Client(account_sid, auth_token)
 
 	# create verification message
