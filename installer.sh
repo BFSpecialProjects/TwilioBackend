@@ -20,4 +20,4 @@ psycopg2
 echo "\n\n\nGetting the latest version of the Launcher...\n\n\n"
 wget https://github.com/BFSpecialProjects/TwilioBackend/blob/master/launch.sh
 
-echo "\n\n\nAll done! Run ./launch.sh to get started."
+echo "\n\n\nAll done!"
